@@ -1,0 +1,231 @@
+## Scenario settings
+Scenario.name = CCNDA_%%Group.router%%_%%MovementModel.rngSeed%%_%%Group.msgTtl%%_%%Group.bufferSize%%_%%Sink.queryDistribution%%
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 1000
+Scenario.nrofHostGroups = 12
+
+## Interface-specific settings
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+highspeedInterface.type = SimpleBroadcastInterface
+highspeedInterface.transmitSpeed = 10M
+highspeedInterface.transmitRange = 200
+
+## Group-specific settings - common
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = [CCNRouter; SprayAndWaitRouter; FirstContactRouter]
+CCNRouter.nrofCopies = 10
+CCNRouter.binaryMode = true
+Group.bufferSize = [4M; 8M; 16M; 32M; 64M]
+Group.waitTime = 0,120
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.speed = 0.5,1.5
+Group.msgTtl = [50; 100; 150; 200; 250; 300; 350]
+
+## Source Application
+Source.type = CCN_application
+Source.cacheCapacity = 5000
+Source.mode = 2
+Source.avaCache = 1,1
+Source.maxCarriedContent = 1
+Source.staticCacheCapacity = 50
+Source.staticCacheRange = 1,200
+Source.seedStaticCache = 36
+Source.enablePIT = true
+
+Group1.nrofApplications = 1
+Group1.application1 = Source
+Group1.nrofHosts = 1
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 2600,2200
+Group1.groupID = S
+Group1.nrofInterfaces = 1
+Group1.interface1 = highspeedInterface
+Group1.bufferSize = 1G
+Group1.speed = 0,0
+
+Group2.nrofApplications = 1
+Group2.application1 = Source
+Group2.nrofHosts = 1
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 1300,500
+Group2.groupID = S
+Group2.nrofInterfaces = 1
+Group2.interface1 = highspeedInterface
+Group2.bufferSize = 1G
+Group2.speed = 0,0
+
+Group3.nrofApplications = 1
+Group3.application1 = Source
+Group3.nrofHosts = 1
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 2314,1283
+Group3.groupID = S
+Group3.nrofInterfaces = 1
+Group3.interface1 = highspeedInterface
+Group3.bufferSize = 1G
+Group3.speed = 0,0
+
+Group4.nrofApplications = 1
+Group4.application1 = Source
+Group4.nrofHosts = 1
+Group4.movementModel = StationaryMovement
+Group4.nodeLocation = 2800,750
+Group4.groupID = S
+Group4.nrofInterfaces = 1
+Group4.interface1 = highspeedInterface
+Group4.bufferSize = 1G
+Group4.speed = 0,0
+
+Group5.nrofApplications = 1
+Group5.application1 = Source
+Group5.nrofHosts = 11
+Group5.movementModel = StationaryMovement
+Group5.nodeLocation = 1400,1600
+Group5.groupID = S
+Group5.nrofInterfaces = 1
+Group5.interface1 = highspeedInterface
+Group5.bufferSize = 1G
+Group5.speed = 0,0
+
+Group12.nrofApplications = 1
+Group12.application1 = Source
+Group12.nrofHosts = 15
+Group12.movementModel = ShortestPathMapBasedMovement
+Group12.groupID = p
+Group12.nrofInterfaces = 1
+Group12.interface1 = btInterface
+Group12.speed = 0,0
+
+## Sink Application
+Sink.type = CCN_application
+Sink.mode = 1
+Sink.cacheCapacity = 5000
+Sink.seedQuery = 12
+Sink.interestSize = 50
+Sink.interval = 100
+Sink.numOfMsgToGenerate = 20
+Sink.queryRange = 1,200
+Sink.queryDistribution = 2
+Sink.avaCache = 0,1
+Sink.maxCarriedContent = 1
+Sink.enablePIT = true
+
+Group6.nrofApplications = 1
+Group6.application1 = Sink
+Group6.nrofHosts = 20
+Group6.groupID = p
+Group6.nrofInterfaces = 1
+Group6.interface1 = btInterface
+
+Group11.nrofApplications = 1
+Group11.application1 = Sink
+Group11.nrofHosts = 10
+Group11.groupID = w
+Group11.nrofInterfaces = 1
+Group11.interface1 = btInterface
+
+## Seederte relay nodes
+Seeder.type = CCN_application
+Seeder.cacheCapacity = 500
+Seeder.mode = 3
+Seeder.avaCache = 0,1
+Seeder.maxCarriedContent = 1
+Seeder.enablePIT = true
+
+Group7.nrofApplications = 1
+Group7.application1 = Seeder
+Group7.nrofHosts = 10
+Group7.groupID = c
+Group7.movementModel = ShortestPathMapBasedMovement
+Group7.bufferSize = 50M
+Group7.speed = 2.7,13.9
+Group7.okMaps = 1
+Group7.nrofInterfaces = 1
+Group7.interface1 = btInterface
+
+Group8.nrofApplications = 1
+Group8.application1 = Seeder
+Group8.nrofHosts = 10
+Group8.groupID = t
+Group8.movementModel = MapRouteMovement
+Group8.bufferSize = 50M
+Group8.routeFile = data/tram3.wkt
+Group8.routeType = 1
+Group8.waitTime = 10,30
+Group8.speed = 2.5,5
+Group8.nrofInterfaces = 1
+Group8.interface1 = btInterface
+
+Group9.nrofApplications = 1
+Group9.application1 = Seeder
+Group9.nrofHosts = 20
+Group9.groupID = t
+Group9.movementModel = MapRouteMovement
+Group9.bufferSize = 50M
+Group9.routeFile = data/tram4.wkt
+Group9.routeType = 2
+Group9.waitTime = 10,30
+Group9.speed = 7,10
+Group9.nrofInterfaces = 1
+Group9.interface1 = btInterface
+
+Group10.nrofApplications = 1
+Group10.application1 = Seeder
+Group10.nrofHosts = 10
+Group10.groupID = t
+Group10.movementModel = MapRouteMovement
+Group10.bufferSize = 50M
+Group10.routeFile = data/tram10.wkt
+Group10.routeType = 2
+Group10.waitTime = 10,30
+Group10.speed = 7,10
+Group10.nrofInterfaces = 1
+Group10.interface1 = btInterface
+
+## Message creation parameters
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+Events1.interval = 25,35
+Events1.size = 500k,1M
+Events1.hosts = 0,110
+Events1.prefix = M
+
+## Movement model settings
+MovementModel.rngSeed = [10; 30]
+MovementModel.worldSize = 4500,3400
+MovementModel.warmup = 1000
+
+## Map based movement settings
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+
+## Reports
+Report.nrofReports = 2
+Report.warmup = 0
+Report.reportDir = reports/
+Report.report1 = CCNApplicationReport
+Report.report2 = MessageStatsReport
+
+## Optimization settings
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+## GUI settings
+GUI.UnderlayImage.fileName = data/helsinki_underlay.png
+GUI.UnderlayImage.offset = 64, 20
+GUI.UnderlayImage.scale = 4.75
+GUI.UnderlayImage.rotate = -0.015
+GUI.EventLogPanel.nrofEvents = 100
+
+## Router settings
+SprayAndWaitRouter.nrofCopies = 6
+SprayAndWaitRouter.binaryMode = true
+ProphetRouter.secondsInTimeUnit = 30
