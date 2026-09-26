@@ -83,11 +83,6 @@ public class CCNRouter extends ActiveRouter {
 		if (type == null || contentName == null) {
 			return;
 		}
-		System.out.println(
-				"ATTACKER TRACKED: node=" + getHost()
-						+ " type=" + type
-						+ " content=" + contentName
-						+ " from=" + from);
 
 		String observation = "time=" + String.format("%.1f", core.SimClock.getTime())
 				+ ", type=" + type
