@@ -89,7 +89,7 @@ public class CCNRouter extends ActiveRouter {
 						+ " content=" + contentName
 						+ " from=" + from);
 
-		String observation = "time=" + core.SimClock.getTime()
+		String observation = "time=" + String.format("%.1f", core.SimClock.getTime())
 				+ ", type=" + type
 				+ ", from=" + from
 				+ ", msgID=" + msg.getId();
@@ -113,6 +113,18 @@ public class CCNRouter extends ActiveRouter {
 							k -> new ArrayList<String>())
 					.add(from.toString());
 		}
+	}
+
+	public Map<String, List<String>> getTrackedConsumers() {
+		return this.trackedConsumers;
+	}
+
+	public Map<String, List<String>> getTrackedProducerCandidates() {
+		return this.trackedProducerCandidates;
+	}
+
+	public Map<String, List<String>> getTrackingHistory() {
+		return this.trackingHistory;
 	}
 
 	/**

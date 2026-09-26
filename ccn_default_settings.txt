@@ -249,9 +249,10 @@ Group16.bufferSize = 50M
 
 ## Reports
 
-Report.nrofReports = 2
+Report.nrofReports = 3
 Report.report1 = MessageStatsReport
 Report.report2 = CCNApplicationReport
+Report.report3 = CCNAttackTrackingReport
 Report.warmup = 0
 Report.reportDir = reports/
 
