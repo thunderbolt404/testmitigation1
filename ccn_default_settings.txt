@@ -3,7 +3,7 @@ Scenario.name = TEST_%%Group.router%%_%%MovementModel.rngSeed%%_%%Group.msgTtl%%
 Scenario.simulateConnections = true
 Scenario.updateInterval = 0.1
 Scenario.endTime = 1000
-Scenario.nrofHostGroups = 13
+Scenario.nrofHostGroups = 16
 
 ## Interface-specific settings
 ## Bluetooth
@@ -221,7 +221,31 @@ Group14.interface1= highspeedInterface
 Group14.bufferSize = 1G
 Group14.speed = 0,0
 
+## Passive attacker nodes - Stage 1
+## These nodes behave as normal relay nodes but their CCNRouter
+## stores observations about consumers and producer candidates.
 
+Group15.nrofApplications = 1
+Group15.application1 = Intermedia
+Group15.nrofHosts = 2
+Group15.groupID = A
+Group15.movementModel = ShortestPathMapBasedMovement
+Group15.okMaps = 1
+Group15.speed = 0.5,1.5
+Group15.nrofInterfaces = 1
+Group15.interface1 = btInterface
+Group15.bufferSize = 50M
+
+Group16.nrofApplications = 1
+Group16.application1 = Intermedia
+Group16.nrofHosts = 2
+Group16.groupID = A
+Group16.movementModel = ShortestPathMapBasedMovement
+Group16.okMaps = 1
+Group16.speed = 0.5,1.5
+Group16.nrofInterfaces = 1
+Group16.interface1 = btInterface
+Group16.bufferSize = 50M
 
 ## Reports
 
